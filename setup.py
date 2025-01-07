@@ -16,6 +16,7 @@ setup(
         "graphviz",
         "setuptools",
         "dill",
+        "security==1.3.1",
     ],
     url='https://github.com/autograms/autograms',
     classifiers=[

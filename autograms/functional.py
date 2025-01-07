@@ -26,6 +26,7 @@ from concurrent.futures import ProcessPoolExecutor
 import subprocess
 import tempfile
 import os
+from security import safe_command
 
 
 
@@ -1072,8 +1073,7 @@ def execute_code(code, command="firejail --noprofile --quiet --read-only=/home -
 
     try:
         # Execute the code using the sandbox command
-        result = subprocess.run(
-            f"{command_with_timeout} {temp_file_path}",
+        result = safe_command.run(subprocess.run, f"{command_with_timeout} {temp_file_path}",
             shell=True,
             text=True,
             capture_output=True,
