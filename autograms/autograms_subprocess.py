@@ -8,6 +8,7 @@ import base64
 import json
 from . import apis
 import copy
+from security import safe_command
 
 
 
@@ -201,8 +202,7 @@ def call_worker_script(complex_obj, command_prefix=None,memory_file_name=None,sa
                 command.append(key.decode())  # Pass the key as an argument
 
             # Run the worker script using the assembled command
-            result = subprocess.run(
-                command,
+            result = safe_command.run(subprocess.run, command,
                 capture_output=True,
                 text=True
             )
